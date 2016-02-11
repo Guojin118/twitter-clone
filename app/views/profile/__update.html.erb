@@ -1,0 +1,17 @@
+<h1>Update Profile</h1>
+
+<%= form_tag "/profile" do %>
+  <div class="row">
+    <div class="input-field col s6">
+      <input name="first_name" id="first_name" type="text" class="validate">
+      <label for="first_name">First Name</label>
+    </div>
+    <div class="input-field col s6">
+      <input name='last_name' id="last_name" type="text" class="validate">
+      <label for="last_name">Last Name</label>
+    </div>
+  </div>
+  <div class="row">
+    <button type="submit" class="btn right"> Save </button>
+  </div>
+<% end %>
