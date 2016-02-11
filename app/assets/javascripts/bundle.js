@@ -80,19 +80,43 @@
 	  }
 	
 	  _createClass(Main, [{
+	    key: "formatedTweetList",
+	    value: function formatedTweetList(tweetsList) {
+	      var formatedList = tweetsList.map(function (tweet) {
+	        tweet.formattedDate = moment(tweet.created_at).fromNow();
+	        return tweet;
+	      });
+	      return {
+	        tweetsList: formatedList
+	      };
+	    }
+	  }, {
 	    key: "addTweet",
 	    value: function addTweet(tweetToAdd) {
-	      var newTweetsList = this.state.tweetsList;
-	      newTweetsList.unshift({ id: Date.now(), name: "Guest", body: tweetToAdd });
-	      this.setState({ tweetsList: newTweetsList });
+	      var _this2 = this;
+	
+	      // $.post("/tweets", {body: tweetToAdd})
+	      // .success( savedTweet =>
+	      //   console.log(savedTweet)
+	      // )
+	      // .eroror(erorr => console.log(error));
+	
+	      $.post("/tweets", { body: tweetToAdd }).success(function (bsavedTweet) {
+	        console.log(bsavedTweet);
+	        var newTweetsList = _this2.state.tweetsList;
+	        newTweetsList.unshift(bsavedTweet);
+	        _this2.setState(_this2.formatedTweetList(newTweetsList));
+	      }).error(function (error) {
+	        return console.log(error);
+	      });
 	    }
 	  }, {
 	    key: "componentDidMount",
 	    value: function componentDidMount() {
-	      var _this2 = this;
+	      var _this3 = this;
 	
 	      $.ajax("/tweets").success(function (data) {
-	        return _this2.setState({ tweetsList: data });
+	        return _this3.setState(_this3.formatedTweetList(data));
 	      }).error(function (error) {
 	        return console.log(error);
 	      });
@@ -298,15 +322,16 @@
 	      return React.createElement(
 	        "li",
 	        { className: "collection-item avatar" },
-	        React.createElement(
-	          "i",
-	          { className: "material-icons circle" },
-	          "person_pin"
-	        ),
+	        React.createElement("img", { src: this.props.gravatar, className: "circle" }),
 	        React.createElement(
 	          "span",
 	          { className: "title" },
 	          this.props.name
+	        ),
+	        React.createElement(
+	          "time",
+	          null,
+	          this.props.formattedDate
 	        ),
 	        React.createElement(
 	          "p",
