@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
   def index
-    render json: Tweet.all
+    render json: Tweet.includes(:user).all
   end
 
   def create
