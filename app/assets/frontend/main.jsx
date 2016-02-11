@@ -1,16 +1,12 @@
 import TweetBox from "./components/TweetBox"
 import TweetList from "./components/TweetList"
 
-let mockTweets = [
-  {id:1, name: 'Guojin', body: 'My #First Tweet'},
-  {id:2, name: 'tt', body: 'My #Second Tweet'},
-  {id:3, name: 'yy', body: 'My #Third Tweet'},
-];
+
 
 class Main extends React.Component {
   constructor(props){
     super(props);
-    this.state = {tweetsList: mockTweets }
+    this.state = {tweetsList: [] }
   }
 
   addTweet(tweetToAdd){
