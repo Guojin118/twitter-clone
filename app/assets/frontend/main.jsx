@@ -1,23 +1,32 @@
-import TweetBox from "./components/TweetBox"
-import TweetList from "./components/TweetList"
+import TweetBox from "./components/TweetBox";
+import TweetList from "./components/TweetList";
+import TweetStore from "./stores/TweetStore";
 
+import TweetActions from "./actions/TweetActions";
 
+TweetActions.getAllTweets();
+
+let getAppState = () => {
+  console.log("tweetlist getAll called");
+  return {tweetsList: TweetStore.getAll()};
+}
 
 class Main extends React.Component {
   constructor(props){
     super(props);
-    this.state = {tweetsList: [] }
+    this.state = getAppState();
+    this._onChange = this._onChange.bind(this);
   }
 
-  formatedTweetList(tweetsList){
-    let formatedList = tweetsList.map(tweet =>{
-      tweet.formattedDate = moment(tweet.created_at).fromNow();
-      return tweet;
-    });
-    return {
-      tweetsList: formatedList
-    };
-  }
+  // formatedTweetList(tweetsList){
+  //   let formatedList = tweetsList.map(tweet =>{
+  //     tweet.formattedDate = moment(tweet.created_at).fromNow();
+  //     return tweet;
+  //   });
+  //   return {
+  //     tweetsList: formatedList
+  //   };
+  // }
 
   addTweet(tweetToAdd){
     // $.post("/tweets", {body: tweetToAdd})
@@ -26,20 +35,29 @@ class Main extends React.Component {
     // )
     // .eroror(erorr => console.log(error));
 
-    $.post("/tweets", {body: tweetToAdd})
-    .success(bsavedTweet => {
-      console.log(bsavedTweet);
-      let newTweetsList = this.state.tweetsList;
-      newTweetsList.unshift(bsavedTweet);
-      this.setState(this.formatedTweetList(newTweetsList));
-    })
-    .error(error => console.log(error));
+    // $.post("/tweets", {body: tweetToAdd})
+    // .success(bsavedTweet => {
+    //   console.log(bsavedTweet);
+    //   let newTweetsList = this.state.tweetsList;
+    //   newTweetsList.unshift(bsavedTweet);
+    //   this.setState(this.formatedTweetList(newTweetsList));
+    // })
+    // .error(error => console.log(error));
   }
 
   componentDidMount(){
-    $.ajax("/tweets")
-    .success(data => this.setState(this.formatedTweetList(data)))
-    .error(error => console.log(error));
+    // $.ajax("/tweets")
+    // .success(data => this.setState(this.formatedTweetList(data)))
+    // .error(error => console.log(error));
+    TweetStore.addChangeListener(this._onChange);
+  }
+
+  componentWillUnmount(){
+    TweetStore.removeChangeListner(this._onChange);
+  }
+
+  _onChange(){
+    this.setState(getAppState());
   }
 
   render(){

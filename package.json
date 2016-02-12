@@ -12,6 +12,8 @@
   "author": "guojin",
   "license": "ISC",
   "dependencies": {
-    "babel-loader": "^6.2.2"
+    "babel-loader": "^6.2.2",
+    "events": "^1.1.0",
+    "flux": "^2.1.1"
   }
 }
