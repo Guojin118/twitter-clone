@@ -18,32 +18,6 @@ class Main extends React.Component {
     this._onChange = this._onChange.bind(this);
   }
 
-  // formatedTweetList(tweetsList){
-  //   let formatedList = tweetsList.map(tweet =>{
-  //     tweet.formattedDate = moment(tweet.created_at).fromNow();
-  //     return tweet;
-  //   });
-  //   return {
-  //     tweetsList: formatedList
-  //   };
-  // }
-
-  addTweet(tweetToAdd){
-    // $.post("/tweets", {body: tweetToAdd})
-    // .success( savedTweet =>
-    //   console.log(savedTweet)
-    // )
-    // .eroror(erorr => console.log(error));
-
-    // $.post("/tweets", {body: tweetToAdd})
-    // .success(bsavedTweet => {
-    //   console.log(bsavedTweet);
-    //   let newTweetsList = this.state.tweetsList;
-    //   newTweetsList.unshift(bsavedTweet);
-    //   this.setState(this.formatedTweetList(newTweetsList));
-    // })
-    // .error(error => console.log(error));
-  }
 
   componentDidMount(){
     // $.ajax("/tweets")
@@ -63,7 +37,7 @@ class Main extends React.Component {
   render(){
     return(
       <div className="container">
-          <TweetBox sendTweet={this.addTweet.bind(this)} />
+          <TweetBox />
           <TweetList tweets={this.state.tweetsList}/>
       </div>
     );

@@ -13,7 +13,7 @@ class TweetEventEmitter extends EventEmitter{
       return tweet;
     });
   }
-  
+
   emitChange(){
     this.emit("CHANGE");
   }
@@ -41,7 +41,10 @@ AppDispatcher.register( action => {
       //emit a change event
       TweetStore.emitChange();
       break;
-
+    case ActionTypes.RECEIVE_ONE_TWEET:
+      _tweets.unshift(action.rawTweet);
+      TweetStore.emitChange();
+      break;
     default:
       break;
     //no op
