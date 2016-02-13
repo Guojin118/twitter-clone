@@ -20241,8 +20241,6 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	_TweetActions2.default.getAllTweets();
-	
 	var getAppState = function getAppState() {
 	  console.log("tweetlist getAll called");
 	  return { tweetsList: _TweetStore2.default.getAll() };
@@ -20267,6 +20265,7 @@
 	      // $.ajax("/tweets")
 	      // .success(data => this.setState(this.formatedTweetList(data)))
 	      // .error(error => console.log(error));
+	      _TweetActions2.default.getAllTweets();
 	      _TweetStore2.default.addChangeListener(this._onChange);
 	    }
 	  }, {

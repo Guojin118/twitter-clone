@@ -7,7 +7,7 @@ import TweetStore from "../stores/TweetStore";
 import TweetActions from "../actions/TweetActions";
 import { Link } from 'react-router';
 
-TweetActions.getAllTweets();
+
 
 let getAppState = () => {
   console.log("tweetlist getAll called");
@@ -26,6 +26,7 @@ export default class Index extends React.Component {
     // $.ajax("/tweets")
     // .success(data => this.setState(this.formatedTweetList(data)))
     // .error(error => console.log(error));
+    TweetActions.getAllTweets();
     TweetStore.addChangeListener(this._onChange);
   }
 
