@@ -21,5 +21,12 @@ export default{
       actionType: ActionTypes.RECEIVED_USERS,
       rawUsers //rawTweets: rawTweets
     })
+  },
+  receivedOneFollower(rawFollower){
+    console.log(13,"actionType: ActionTypes.RECEIVED_ONE_FOLLOWER dispatched");
+    AppDispatcher.dispatch({
+      actionType: ActionTypes.RECEIVED_ONE_FOLLOWER,
+      rawFollower //rawTweets: rawTweets
+    })
   }
 }
