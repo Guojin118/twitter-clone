@@ -1,4 +1,6 @@
-import TweetActions from "../actions/TweetActions"
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TweetActions from "../actions/TweetActions";
 
 export default class TweetBox extends React.Component {
   sendTweet(event){

@@ -24,7 +24,7 @@ class TweetEventEmitter extends EventEmitter{
     this.on(CHANGE_EVENT, callback);
   }
 
-  removeChangeListner(){
+  removeChangeListner(callback){
     this.removeListener(CHANGE_EVENT, callback);
   }
 }
