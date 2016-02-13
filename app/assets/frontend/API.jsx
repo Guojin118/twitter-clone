@@ -13,5 +13,11 @@ export default {
     $.post("/tweets", {body})
     .success(rawTweets => ServerActions.receivedOneTweets(rawTweets))
     .error(error => console.log(error));
-  }
+  },
+  getAllUsers() {
+    console.log(2,"API.getAllUsers");
+    $.get("/followers/random")
+    .success(rawUsers => ServerActions.receivedUsers(rawUsers))
+    .error(error => console.log(error));
+  },
 }
